@@ -1,0 +1,70 @@
+#######################################
+# Syntax Coloring Map
+#######################################
+# https://arduino.github.io/arduino-cli/0.21/library-specification/#keywordstxt-format
+# KEYWORD1 Classes, datatypes, and C++ keywords
+# KEYWORD2 Methods and functions
+# KEYWORD3 setup and loop functions, as well as the Serial keywords
+# LITERAL1 Constants
+# LITERAL2 Built-in variables (unused by default)
+
+
+################################################
+# Classes, datatypes (KEYWORD1)
+################################################
+UFC23									KEYWORD1
+ufc23									KEYWORD1
+
+################################################
+# Methods and Functions (KEYWORD2)
+################################################
+begin									KEYWORD2
+isConnected								KEYWORD2
+
+init									KEYWORD2
+update									KEYWORD2
+reset									KEYWORD2
+stopMeasurement							KEYWORD2
+updateConfiguration						KEYWORD2
+readConfig								KEYWORD2
+writeConfig								KEYWORD2
+setConfigurationRegisters				KEYWORD2
+startMeasurement						KEYWORD2
+hasError								KEYWORD2
+getErrors								KEYWORD2
+isMeasuring								KEYWORD2
+errorToStrings							KEYWORD2
+partIdToString							KEYWORD2
+readCommunicationFlags					KEYWORD2
+readInterruptFlags						KEYWORD2
+readFrontendErrorFlags					KEYWORD2
+readFrontendStatusFlags					KEYWORD2
+readSystemStatusFlags					KEYWORD2
+clearFlags								KEYWORD2
+triggerSingleMeasurement				KEYWORD2
+sendRemoteCommand						KEYWORD2
+readRamAddress							KEYWORD2
+writeRamAddress							KEYWORD2
+getAmplitudeMeasurementResultsRaw		KEYWORD2
+getAmplitudeMeasurementResultsV			KEYWORD2
+getPulseWidthMeasurementResultsRaw		KEYWORD2
+getPulseWidthMeasurementResultsRatio	KEYWORD2
+getMultiHitSumNs						KEYWORD2
+getMultiHitCount						KEYWORD2
+getVddVcc								KEYWORD2
+getHighSpeedOscillatorFrequencyMhz		KEYWORD2
+getZeroCrossLevelV						KEYWORD2
+getTemperaturesSeq1DegC					KEYWORD2
+getTemperaturesSeq2DegC					KEYWORD2
+getIndividualTofHitsNs					KEYWORD2
+getAverageHitNs							KEYWORD2
+getSupplyVoltageV						KEYWORD2
+getHighSpeedClockFrequencyHz			KEYWORD2
+triggerSpoolPortOpenCheck				KEYWORD2
+isSpoolWorkingWell						KEYWORD2
+
+################################################
+# Constants (LITERAL1)
+################################################
+CONSTANT								LITERAL1
+
