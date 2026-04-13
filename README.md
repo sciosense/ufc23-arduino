@@ -1,7 +1,7 @@
 # ScioSense UFC23 Arduino Library
 The UFC23 sensor from [ScioSense](https://www.sciosense.com/) offers an ultrasonic flow converter for measurements in water, heat, and gas meters. The sensor comes in the size QFN32 package with a digital SPI interface. It uses a high-performance front-end capable of driving two transducers and processing the received signal to extract the time of flight (TOF) information with high precision and offset stability.
 
-<img src="Images/ufc23.png" width="300">
+<img src="images/ufc23.png" width="300">
 
 A 128-words RAM allows access to all time data but also accumulation of data (batch mode) and reduced wake-up of external µC. With 1µA quiescent current and low operation current it is optimized for battery-operated systems.
 
@@ -38,11 +38,11 @@ Include Library > Manage Libraries...)
 There are two evaluation kit models:
  - Standard kit
 
-<img src="Images/UFC23_EvalKit.png" width="300">
+<img src="images/UFC23_EvalKit.png" width="300">
 
  - Arduino pinout kit
 
-<img src="Images/UFC23_EvalKit_Arduino.png" width="300">
+<img src="images/UFC23_EvalKit_Arduino.png" width="300">
 
 Both evaluation boards have the same pinout connections for the ScioSense picoprog and for the ultrasound transducer.
 
@@ -72,7 +72,7 @@ with the UFC23 breakout board for SPI communication.
 |          GND          |  GND  |
 |          VCC          |  5V   |
 
-<img src="Images/UFC23_EvalKit_Wiring.png" width="1000">
+<img src="images/UFC23_EvalKit_Wiring.png" width="1000">
 
 ## Selecting a sensor configuration
 The examples adjust the UFC23 configuration by setting the contents of the registers. This is done providing an array with the register contents into the _ufc23.setConfigurationRegisters()_ function. It is also possible to edit the individual parameters under _ufc23.Param_. After modifying the parameters this way, the _ufc23.updateConfiguration()_ function must be called to update the data structures to these new settings.
