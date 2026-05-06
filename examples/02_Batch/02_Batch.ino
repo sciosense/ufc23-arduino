@@ -1,10 +1,18 @@
+/*
+    Batch
+
+    This example measures 12 measurements (bundles) in one batch.
+    The sensor triggers the interrupt when all measurements are ready.
+    The configuration was chosen for an Audiowell HS0014-000 transducer in water.
+*/
+
 #include <Arduino.h>
 #include <SPI.h>
 #include <ScioSense_UFC23.h>
 
-#define PIN_INTN    4     // define pin for interrupt
-#define PIN_CS      5     // define pin for chip select
-#define SPI_SPEED   1000000
+#define PIN_INTN    4           // Define pin for interrupt
+#define PIN_CS      5           // Define pin for chip select
+#define SPI_SPEED   1000000     // Speed of the SCLK on the SPI interface
 
 static UFC23 ufc23;
 uint16_t batchNumber;
@@ -35,25 +43,25 @@ void setup()
     // Single ended configuration
     uint32_t configRegisters[UFC23_AMOUNT_CONFIGURATION_REGISTERS] =
     {
-        0x00000018,     // A0   Interrupt sources
-        0x00000FF1,     // A1   Error flag sources
-        0x000006DB,     // A2   GPIO
-        0x00000010,     // A3   LDO refresh rate
-        0x000017AF,     // A4   Timing between US and DS, direction
-        0x0000B100,     // A5   Timing between measurements
-        0x00001249,     // A6   Which measurements to perform every how many cycle triggers
-        0x000194F4,     // A7   HSO clock frequency and temp ports
+        0x00000018,     // A0
+        0x00000FF1,     // A1
+        0x000006DB,     // A2
+        0x00000010,     // A3
+        0x000017AF,     // A4
+        0x0000B100,     // A5
+        0x00001249,     // A6
+        0x000194F4,     // A7
         0x00000000,     // A8
-        0x04900000,     // A9   Reserved
-        0xC00DC034,     // AA   Amount multi hits, USM mask, enable of amplitude, pwd, zero cross
-        0x0000140E,     // AB   Fire burst frequency and pulses
-        0x00000000,     // AC   Reserved
-        0x0808B00E,     // AD   Reserved
-        0x46301024,     // AE   Resistance matching and PGA
-        0x0FFFFFFF,     // AF   Init times
-        0x0001424E,     // B0   ToF hits to store, start, etc
-        0x20412424,     // B1   Number of peaks for amplitude monitoring
-        0x00000000      // B2   Fine USM mask
+        0x04900000,     // A9
+        0xC00DC034,     // AA
+        0x0000140E,     // AB
+        0x00000000,     // AC
+        0x0808B00E,     // AD
+        0x46301024,     // AE
+        0x0FFFFFFF,     // AF
+        0x0001424E,     // B0
+        0x20412424,     // B1
+        0x00000000      // B2
     };
 
     ufc23.setConfigurationRegisters(configRegisters);

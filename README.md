@@ -50,7 +50,6 @@ Both evaluation boards have the same pinout connections for the ScioSense picopr
 
 The UFC23 works at 3.3V and the boards have a LDO to be able to work with 5V VCC input. If the LDO is used, the proper jumper must be placed. On the standard kit this means placing the J34 jumper. On the Arduino pinout kit, jumper J32 must be placed bridging the center pin to the left (when using the picoprog connections) or to the right (when using the Arduino connectors).
 
-
 ### Ultrasonic connections
 For all examples except **06_Gas** the transducer is connected in single ended mode. That means that the leads of the upstream transducer must be connected to XL_UP and to GNDP, and the leads of the downstream transducer to XL_DN and to GNDP.
 
@@ -87,12 +86,14 @@ The following registers must be reviewed in particular:
   - C_USM_MASK_WIN: Mask window, depends on the the length of the transducer
 - CR_USM_FBG_MCTRL (Fire burst generator control) (Address 0xAB)
   - C_FBG_LR_CLK_DIV: Divider to select a fire frequency that coincides with the resonance of the transducer
+  - C_FBG_FBNUM: Amount of pulses to fire
 - CR_USM_ANA_CTRL2 (analog control) (Address 0xAE)
-  - C_RMSET_TX: resistance of the transducer
-  - C_RMSET_RX: resistance of the transducer
+  - C_RMSET_TX: resistance of the transmit transducer
+  - C_RMSET_RX: resistance of the receive transducer
   - C_PGA_ST1_GAIN: gain of first PGA stage. If more amplification is needed consider using differential mode and the second PGA stage
 - CR_USM_HIT_CTRL (Ultrasonic hit control) (Address 0xB0)
-  - C_TOF_MULTIHIT_NO: Number of hits to fire. The firing of pulses should be completed before the echoes arrive back to the firing transducer
+  - C_TOF_HIT_NO: Number of hits to store in RAM.
+  - C_TOF_MULTIHIT_NO: Number of hits to use to calculate the multi-hit summation.
 - CR_USM_MASK_HR_WIN (High resolution receiver mask in up direction) (Address 0xB2)
   - C_USM_MASK_HR_WIN_DN: can be used to fine tune the mask window
   - C_USM_MASK_HR_WIN_UP: can be used to fine tune the mask window

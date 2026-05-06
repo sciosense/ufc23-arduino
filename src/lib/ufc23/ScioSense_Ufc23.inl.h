@@ -9,6 +9,22 @@
 #define write(data, len)                                            ufc23->io.write(ufc23->io.config, (uint8_t*)(data), (len))
 #define wait(ms)                                                    ufc23->io.wait(ms)
 
+// Speed of sound in fresh water in m/s as a function of temperature in degC. Data from https://www.engineeringtoolbox.com/sound-speed-water-d_598.html
+static float ufc23SpeedSoundFreshWaterFromTemperature[UFC23_AMOUNT_POINTS_SPEED_SOUND_TABLE][2] = {
+    {0.0,   1403.0},
+    {5.0,   1427.0},
+    {10.0,  1447.0},
+    {20.0,  1481.0},
+    {30.0,  1507.0},
+    {40.0,  1526.0},
+    {50.0,  1541.0},
+    {60.0,  1552.0},
+    {70.0,  1555.0},
+    {80.0,  1555.0},
+    {90.0,  1550.0},
+    {100.0, 1543.0},
+};
+
 static inline Result Ufc23_ReadRemoteCommand(ScioSense_Ufc23* ufc23, uint8_t remoteCommand, uint16_t extendedCommand, uint8_t* dataToRead, uint16_t dataToReadSize)
 {
     uint8_t valuesToWrite[2];
@@ -33,7 +49,7 @@ static inline Result Ufc23_WriteDWordRAM(ScioSense_Ufc23* ufc23, uint16_t RAMAdd
 {
     Result result = RESULT_IO_ERROR;
     
-    if( RAMAddress <= UFC23_RAM_CONFIG_REGISTER_ADDRESS_END )
+    if( RAMAddress <= UFC23_RAM_CONFIG_REGISTER_ADDRESS_END || (RAMAddress == UFC23_CR_SHR_DEBUG) )
     {
         uint8_t arrayToWrite[6];
     
@@ -1444,6 +1460,30 @@ static inline Result Ufc23_GetPartId(ScioSense_Ufc23* ufc23)
     return result;
 }
 
+static inline float UFC23_GetWaterSpeedSoundFromTemperature(float temperature)
+{
+    if( temperature < ufc23SpeedSoundFreshWaterFromTemperature[0][0] )
+    {
+        return ufc23SpeedSoundFreshWaterFromTemperature[0][1];
+    }
+    if( temperature > ufc23SpeedSoundFreshWaterFromTemperature[UFC23_AMOUNT_POINTS_SPEED_SOUND_TABLE-1][0] )
+    {
+        return ufc23SpeedSoundFreshWaterFromTemperature[UFC23_AMOUNT_POINTS_SPEED_SOUND_TABLE-1][1];
+    }
+    uint8_t idx = 0;
+    while( (temperature >= ufc23SpeedSoundFreshWaterFromTemperature[idx][0]) && (idx < (UFC23_AMOUNT_POINTS_SPEED_SOUND_TABLE-1)) )
+    {
+        idx++;
+    }
+    
+    float temp1 = ufc23SpeedSoundFreshWaterFromTemperature[idx-1][0];
+    float temp2 = ufc23SpeedSoundFreshWaterFromTemperature[idx][0];
+    float speedSound1 = ufc23SpeedSoundFreshWaterFromTemperature[idx-1][1];
+    float speedSound2 = ufc23SpeedSoundFreshWaterFromTemperature[idx][1];
+    
+    return speedSound1 + (speedSound2 - speedSound1) * (temperature - temp1) / (temp2 - temp1);
+}
+
 static inline Result Ufc23_ReadConfig(ScioSense_Ufc23* ufc23)
 {
     Result result = RESULT_IO_ERROR;
@@ -1793,4 +1833,4 @@ static inline void Ufc23_UpdateConfiguration(ScioSense_Ufc23* ufc23)
 #undef hasFlag
 #undef memcpy
 
-#endif // SCIOSENSE_ENS21X_INL_C_H
+#endif // SCIOSENSE_UFC23_INL_C_H
