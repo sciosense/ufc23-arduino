@@ -47,6 +47,7 @@ readRamAddress							KEYWORD2
 writeRamAddress							KEYWORD2
 getAmplitudeMeasurementResultsRaw		KEYWORD2
 getAmplitudeMeasurementResultsV			KEYWORD2
+getAmplitudeMeasurementResultsAfterPgaV KEYWORD2
 getPulseWidthMeasurementResultsRaw		KEYWORD2
 getPulseWidthMeasurementResultsRatio	KEYWORD2
 getMultiHitSumNs						KEYWORD2

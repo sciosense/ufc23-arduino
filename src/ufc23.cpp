@@ -13,12 +13,9 @@ UFC23::UFC23()
 {
     State                   = UFC23_STATE_NOT_CONNECTED;
     partId                  = NOT_INITIALIZED;
-    correctionFactorHso     = 1;
     amountCycles            = 0;
     frontendStatusFlags     = 0;
     frontendErrorFlags      = 0;
-    pwLsbNs                 = 0;
-    tofLsbNs                = 0;
     zeroCrossCalibration    = 0;
     Ufc23_InitializeConfiguration(this);
 }
@@ -117,6 +114,11 @@ uint8_t UFC23::getAmplitudeMeasurementResultsRaw(UFC23_AMP_Raw_TypeDef* amplitud
 uint8_t UFC23::getAmplitudeMeasurementResultsV(UFC23_AMP_V_TypeDef* amplitudesVUp, UFC23_AMP_V_TypeDef* amplitudesVDn)
 {
     return Ufc23_ParseBatchAmplitudeV(this, amplitudesVUp, amplitudesVDn);
+}
+
+uint8_t UFC23::getAmplitudeMeasurementResultsAfterPgaV(UFC23_AMP_V_TypeDef* amplitudesVUp, UFC23_AMP_V_TypeDef* amplitudesVDn)
+{
+    return Ufc23_ParseBatchAmplitudeAfterPgaV(this, amplitudesVUp, amplitudesVDn);
 }
 
 uint8_t UFC23::getPulseWidthMeasurementResultsRaw(UFC23_PW_Raw_TypeDef* pulseWidthsRawUp, UFC23_PW_Raw_TypeDef* pulseWidthsRawDn)
@@ -304,14 +306,9 @@ uint32_t UFC23::writeRamAddress(uint16_t ramAddress, uint32_t registerContent)
     return Ufc23_WriteDWordRAM(this, ramAddress, registerContent);
 }
 
-float UFC23::getTofLsbNs()
+float UFC23::getTofLsbNs(uint8_t batchIndex)
 {
-    return Ufc23_GetTimeOfFlightLsbNs(this);
-}
-
-float UFC23::getPWLsb()
-{
-    return Ufc23_GetPulseWidthLsb(this);
+    return Ufc23_GetTimeOfFlightLsbNs(this, batchIndex);
 }
 
 float UFC23::getHighSpeedClockFrequencyHz()
