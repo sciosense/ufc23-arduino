@@ -59,7 +59,6 @@ static const char* ufc23_ErrorNames[UFC23_AMOUNT_FRONTEND_ERROR_FLAGS] =
 static const char* ufc23_PartIds[UFC23_AMOUNT_PART_ID_TYPES] =
 {
     "NOT INITIALIZED",
-    "UFC18",
     "UFC23",
     "UNKNOWN DEVICE",
 };

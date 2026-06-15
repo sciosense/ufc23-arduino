@@ -202,7 +202,7 @@ typedef uint16_t Ufc23_ExtendedCommands;
 #define UFC23_CR_USM_WVM_ADDRESS                        (0xB1)          // Ultrasonic wave monitor
 #define UFC23_CR_USM_MASK_HR_WIN_ADDRESS                (0xB2)          // High resolution receiver mask in up direction
 #define UFC23_CR_SHR_DEBUG                              (0xDF)          // Reserved
-#define UFC23_CR_SR_DEVICE_ID_ADDRESS                   (0xFF)          // Identification of UFC23 or UFC18
+#define UFC23_CR_SR_DEVICE_ID_ADDRESS                   (0xFF)          // Identification of UFC23
 
 //// Index of CR configuration registers array
 #define UFC23_CR_FRU_IFH_INDEX                          (0)             // Index of the configuration for the CR_FRU_IFH register on the CR array
@@ -718,7 +718,6 @@ typedef uint16_t Ufc23_ExtendedCommands;
 //// Bit definition of CR_SR_DEVICE_ID register
 #define UFC23_C_SR_DEVICE_ID_Pos                        (8U)                                            // Device identification
 #define UFC23_C_SR_DEVICE_ID_Msk                        (0xFFUL << UFC23_C_SR_DEVICE_ID_Pos)            // 0x0000FF00
-#define UFC23_C_SR_DEVICE_ID_UFC18                      (0x18)                                          // Device identification for UFC18
 #define UFC23_C_SR_DEVICE_ID_UFC23                      (0x23)                                          // Device identification for UFC23
 
 //// Byte definitions for the USM Bundle data. For batch mode these definitions are relative to the start of each batch

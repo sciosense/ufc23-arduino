@@ -133,6 +133,14 @@ void setup()
     {
         Serial.println("Error! Configuration read doesn't match the values written");
     }
+
+    Serial.println("Hits that will have their amplitude measured:");
+    Serial.print("Amp1 -> Hit");
+    Serial.println(ufc23.Param.CR_B1.C_USM_AM_PD_1);
+    Serial.print("Amp2 -> Hit");
+    Serial.println(ufc23.Param.CR_B1.C_USM_AM_PD_2);
+    Serial.print("Amp3 -> Hit");
+    Serial.println(ufc23.Param.CR_B1.C_USM_AM_PD_3);
     
     if( ufc23.startMeasurement() == RESULT_OK )
     {
@@ -180,9 +188,9 @@ void loop()
                 
                 Serial.print("\tAmpDn1[mV]:");
                 Serial.print(ampDn[0].AMPL1*1000);
-                Serial.print("\ttAmpDn2[mV]:");
+                Serial.print("\tAmpDn2[mV]:");
                 Serial.print(ampDn[0].AMPL2*1000);
-                Serial.print("\ttAmpDn3[mV]:");
+                Serial.print("\tAmpDn3[mV]:");
                 Serial.print(ampDn[0].AMPL3*1000);
                 Serial.print("\t");
                 

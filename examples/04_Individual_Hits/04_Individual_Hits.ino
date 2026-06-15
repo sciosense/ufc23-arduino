@@ -116,7 +116,8 @@ void loop()
                 // Print the individual hits
                 if( ufc23.getIndividualTofHitsNs(tofHitsUp, tofHitsDn, amountHitsUp, amountHitsDn) == RESULT_OK )
                 {
-                    for( uint8_t hitIdx = 0; hitIdx < amountHitsUp[0]; hitIdx++ )
+                    uint8_t minAmountHits = (amountHitsUp[0] > amountHitsDn[0]) ? amountHitsDn[0] : amountHitsUp[0];
+                    for( uint8_t hitIdx = 0; hitIdx < minAmountHits; hitIdx++ )
                     {
                         Serial.print("Hit:");
                         Serial.print(hitIdx);

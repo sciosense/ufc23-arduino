@@ -1498,7 +1498,7 @@ static inline void Ufc23_InitializeConfiguration(ScioSense_Ufc23* ufc23)
 
 static inline uint8_t Ufc23_IsPartIdValid(ScioSense_Ufc23* ufc23)
 {
-    return ( ( ufc23->partId == UFC18_SENSOR ) || ( ufc23->partId == UFC23_SENSOR ) );
+    return ( ufc23->partId == UFC23_SENSOR );
 }
 
 static inline Result Ufc23_GetPartId(ScioSense_Ufc23* ufc23)
@@ -1511,11 +1511,7 @@ static inline Result Ufc23_GetPartId(ScioSense_Ufc23* ufc23)
     {
         uint32_t deviceIdReg = Ufc23_ByteArrayToDWord(deviceIdBytes, 0);
         uint32_t deviceId = UFC23_SR_DEVICE_ID_GET( deviceIdReg );
-        if( deviceId == UFC23_C_SR_DEVICE_ID_UFC18 )
-        {
-            ufc23->partId = UFC18_SENSOR;
-        }
-        else if ( deviceId == UFC23_C_SR_DEVICE_ID_UFC23 )
+        if ( deviceId == UFC23_C_SR_DEVICE_ID_UFC23 )
         {
             ufc23->partId = UFC23_SENSOR;
         }

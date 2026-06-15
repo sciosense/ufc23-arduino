@@ -65,7 +65,6 @@ typedef enum
 typedef enum
 {
     NOT_INITIALIZED,
-    UFC18_SENSOR,
     UFC23_SENSOR,
     UNKNOWN
 } Ufc23_PartID;
@@ -324,7 +323,7 @@ static inline Result                    Ufc23_StartCyclingMeasurement           
 static inline Result                    Ufc23_DetectEndBootLoadSequence             (ScioSense_Ufc23* ufc23);               // Checks if the bootload has been completed
 static inline Result                    Ufc23_SetStandbyState                       (ScioSense_Ufc23* ufc23);               // Sets the sensor into Standby mode
 
-static inline uint8_t                   Ufc23_IsPartIdValid                         (ScioSense_Ufc23* ufc23);               // Returns 1 if the part ID is a UFC18 or UFC23
+static inline uint8_t                   Ufc23_IsPartIdValid                         (ScioSense_Ufc23* ufc23);               // Returns 1 if the part ID is a UFC23
 static inline Result                    Ufc23_GetPartId                             (ScioSense_Ufc23* ufc23);               // Gets the Part ID of the sensor
 
 static inline Result                    Ufc23_WriteRemoteCommand                    (ScioSense_Ufc23* ufc23, uint8_t remoteCommand, uint16_t extendedCommand);                                                  // Writes a remote command to the sensor
